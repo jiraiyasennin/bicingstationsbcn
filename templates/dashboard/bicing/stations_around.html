@@ -1,0 +1,37 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1 class="mt-4 text-center">Bicing Search</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Apps Home</li>
+    <li class="breadcrumb-item active">Bicing</li>
+    <li class="breadcrumb-item active">Bicing-Stations</li>
+</ol>
+<div class="row  justify-content-center">
+        <div id="mapid" style="width: 600px; height: 400px;"></div>
+        
+    <script type="text/javascript">
+        {% for key in data %}
+          {%if key.latUser and key.longUser%}
+            var mymap = L.map('mapid').setView([{{key.latUser}}, {{key.longUser}}], 16);
+          L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            accessToken: 'pk.eyJ1IjoiZHJzdHJhbmdlc3VwcG9ydCIsImEiOiJja2Q3NWt6d2kwaDJ1MnFzYzNneHAyd3JwIn0.-wDLdmm-eZaHqsldhAv4qA'
+        }).addTo(mymap);
+            var bikeIcon = L.icon({
+              iconUrl: 'https://img2.pngio.com/person-emoji-icon-of-flat-style-available-in-svg-png-eps-ai-bicycle-rider-icon-png-256_256.png',
+             iconSize: [30, 50], // size of the icon
+             });
+            L.marker([{{key.latUser}}, {{key.longUser}}]).addTo(mymap).bindPopup("You are here").openPopup();
+          {%else%}
+                L.marker([{{key.latitude}}, {{key.longitude}}], {icon: bikeIcon}).bindPopup("Estación: {{key.station_id}} <br>Bicis: {{key.bicycles_available}} bicis  <br>Espacios: {{key.docks_available}} sitios libres ").addTo(mymap);
+          {%endif%}
+        {% endfor %}
+    </script>
+</div>
+{% endblock content %}
