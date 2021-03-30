@@ -10,8 +10,9 @@ def bicing(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = BicingForm(request.POST)
+        #checks if the form has changed to manage the empty fields
         if form.has_changed():
-        # check whether it's valid:
+        # check whether it's valid, and then, sends the data to the template
          if form.is_valid():
              lat= form.cleaned_data.get('lat')
              long= form.cleaned_data.get('long')

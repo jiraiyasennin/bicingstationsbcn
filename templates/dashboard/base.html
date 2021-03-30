@@ -39,7 +39,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dostow">
-            <a class="navbar-brand" href="#">Dostow Apps Site</a>
+            <a class="navbar-brand" href="#">Web Apps Site</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Pull right-->
             <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"></div>
@@ -78,7 +78,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-at"></i></div>
                                 Contact
                             </a>
-                            <a class="nav-link" href="https://testing.dostow.tech/">
+                            <a class="nav-link" href="https://apps.dostow.tech/">
                                 <div class="sb-nav-link-icon"><i class="fas fa-laptop-code"></i></div>
                                 Apps
                             </a>
@@ -117,7 +117,7 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid">
+                    <div class="container">
                         {% block content %}
                         
                         {% endblock %}
@@ -135,6 +135,5 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{% static 'dashboard/dist/js/scripts.js' %}"></script>
-        
     </body>
 </html>

@@ -4,7 +4,7 @@ import urllib.request
 from django import forms
 from crispy_forms.helper import FormHelper
 
-
+#Class to process the coordinates of the user
 class BicingForm(forms.Form):
     
     #User location form
@@ -27,13 +27,13 @@ class BicingForm(forms.Form):
         # Grados a kilómetros
         kms = round(dd * 111.302, 2)
         return kms
-
+    #Search for the bicycle stations around the user within 450 mts using the Service Api's
     def arrayStations(self, latUser, longUser):
      print(latUser)
-     #Api stations Data
+     #Api info stations Data
      json_url = urllib.request.urlopen("https://api.bsmsa.eu/ext/api/bsm/gbfs/v2/en/station_information")
      data = json.loads(json_url.read())
-     #Data with available bikes and docks
+     #Data with available bikes and docks in real time
      json_url_status = urllib.request.urlopen("https://api.bsmsa.eu/ext/api/bsm/gbfs/v2/en/station_status")
      data_status= json.loads(json_url_status.read())
      stationsinfo=[]
